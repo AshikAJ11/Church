@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - St. Antony's Church</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Bootstrap CSS (5.3.3) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #3a5a78;
+            --secondary: #e9c46a;
+            --accent: #e76f51;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #2a9d8f;
+        }
+
+        /* Prevent horizontal overflow globally */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            background-color: transparent;
+            transform: translateY(0);
+        }
+
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+
+        .navbar.scrolled {
+            background-color: rgb(13, 104, 101) !important;
+            transform: translateY(0);
+        }
+
+        .navbar.scrolled .nav-link,
+        .navbar.scrolled .navbar-brand i {
+            color: white !important;
+        }
+
+        .nav-link.active {
+            color: var(--accent) !important;
+            font-weight: 600;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .nav-item {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .nav-link {
+            transition: color 0.3s ease-in-out;
+        }
+
+        .donate-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav {
+                text-align: center;
+            }
+            .nav-item {
+                padding: 10px 0;
+            }
+            .donate-btn {
+                margin: 10px auto;
+                display: block;
+                width: fit-content;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar-brand i {
+                font-size: 18px;
+            }
+            .logo {
+                height: 40px;
+            }
+        }
+
+        /* Hero Section */
+        .about-hero {
+          background: url('images/bible2.jpg') no-repeat center center/cover;
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .about-hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* History Section */
+        .history-section {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -12px;
+        }
+
+        .right::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 100px 0;
+            background: url('images/cross-bg.jpg') center/cover no-repeat fixed;
+            position: relative;
+            color: white;
+        }
+
+        .mission-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(58, 90, 120, 0.9);
+        }
+
+        .mission-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        /* Ministries Section */
+        .ministries-about-section {
+            padding: 100px 0;
+        }
+
+        .ministry-card {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .ministry-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .ministry-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .ministry-info {
+            padding: 25px;
+            background-color: white;
+        }
+
+        .ministry-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .ministry-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Leadership Section */
+        .leadership-section {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .leader-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .leader-img {
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .leader-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .leader-social {
+            margin-top: 15px;
+        }
+
+        .leader-social a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .leader-social a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgb(13, 104, 101);
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin: 1rem;
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section ul li {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: #d4a017;
+        }
+
+        .social-icons a {
+            margin-right: 1rem;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #6b4e31;
+            margin-top: 1rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #d1583d;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 18px;
+            }
+
+            .left::after, .right::after {
+                left: 18px;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                min-height: 350px;
+                background-attachment: scroll; /* Disable fixed background on mobile */
+            }
+
+            .about-hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow" style="z-index: 1050;">
+        <div class="container">
+            <a class="navbar-brand logo-container" href="index.html">
+                <img src="images/logo.jpg" class="logo" alt="Logo">
+                <i class="ms-2" style="font-size: 24px;">St. Antony's Church</i>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-black" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-black active" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="festivals.html">Festivals</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="contact.html">Contact Us</a></li>
+                </ul>   
+                <div class="d-flex ms-3">
+                    <a href="donate.html" class="donate-btn">Donate Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero-content">
+                <h1 class="animate__animated animate__fadeInDown">Our Story & Mission</h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Discover the heart behind St. Antony's Church</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="history-section">
+        <div class="container">
+            <h2 class="section-title">Our History</h2>
+            <div class="timeline">
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>1952 - Humble Beginnings</h3>
+                        <p>St. Antony's Church was founded by Rev. Johnathan Grace and 12 faithful members in a small rented hall. Our first service had just 18 attendees, but the vision was large - to create a Christ-centered community that would transform lives.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>1965 - First Building</h3>
+                        <p>After 13 years of growth, we dedicated our first church building on Faith Avenue. The construction was largely done by volunteer labor from congregation members, a testament to our community spirit.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>1980 - Community Outreach</h3>
+                        <p>We launched our first major outreach program - a food pantry that served over 200 families weekly. This marked the beginning of our deep commitment to serving the practical needs of our community.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>1995 - Education Wing</h3>
+                        <p>Added our education wing to accommodate growing Sunday School programs and Bible study groups. This expansion allowed us to triple our children's ministry capacity.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>2010 - Modern Sanctuary</h3>
+                        <p>Completed our current sanctuary building, featuring state-of-the-art facilities while preserving the historic charm of our original structure. The dedication service was attended by over 1,000 people.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>Present Day - Flourishing Community</h3>
+                        <p>Today, St. Antony's Church serves over 2,000 members with multiple worship services, 12 active ministries, and community programs that impact thousands annually. Our legacy continues to grow.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container position-relative">
+            <h2 class="section-title">Our Mission & Values</h2>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-cross"></i>
+                        </div>
+                        <h3>Christ-Centered Worship</h3>
+                        <p>We exist to glorify God through authentic worship that celebrates Jesus Christ as Lord. Our services blend traditional and contemporary elements to engage all generations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Community Transformation</h3>
+                        <p>We're committed to being God's hands and feet in our city through practical service, social justice initiatives, and partnerships with local organizations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h3>Discipleship & Growth</h3>
+                        <p>We provide pathways for spiritual growth at every life stage through small groups, Bible studies, and mentoring relationships that foster deep faith.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministries Section -->
+    <section class="ministries-about-section">
+        <div class="container">
+            <h2 class="section-title">Our Ministries in Action</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="ministry-card">
+                        <img src="images/bible1.jpg" alt="Children's Ministry" class="ministry-img">
+                        <div class="ministry-info">
+                            <h3>Children's Ministry</h3>
+                            <p>Our vibrant children's program serves over 200 kids weekly through Sunday School, Vacation Bible School, and special events. This year, we've launched an innovative Bible literacy program that's being adopted by other churches in our district.</p>
+                            <div class="ministry-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">200+</div>
+                                    <div class="stat-label">Children Weekly</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">15</div>
+                                    <div class="stat-label">Volunteers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ministry-card">
+                        <img src="images/bible2.jpg" alt="Youth Ministry" class="ministry-img">
+                        <div class="ministry-info">
+                            <h3>Youth Ministry</h3>
+                            <p>Our dynamic youth program engages teenagers through weekly gatherings, mission trips, and leadership development. Last summer, our youth group raised $15,000 to build a well in a developing country and sent 12 members to help with construction.</p>
+                            <div class="ministry-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">75</div>
+                                    <div class="stat-label">Active Members</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">4</div>
+                                    <div class="stat-label">Mission Trips/Year</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ministry-card">
+                        <img src="images/bible2.jpg" alt="Community Outreach" class="ministry-img">
+                        <div class="ministry-info">
+                            <h3>Community Outreach</h3>
+                            <p>Our outreach programs serve over 1,000 people monthly through food distribution, homeless shelter support, and job training programs. This year we've partnered with 5 local schools to provide backpacks and supplies to students in need.</p>
+                            <div class="ministry-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">1,200</div>
+                                    <div class="stat-label">Meals Served/Month</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">30</div>
+                                    <div class="stat-label">Community Partners</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="ministry-card">
+                        <img src="images/bible1.jpg" alt="Seniors Ministry" class="ministry-img">
+                        <div class="ministry-info">
+                            <h3>Seniors Ministry</h3>
+                            <p>Our Golden Years fellowship provides companionship, spiritual nourishment, and practical support to over 100 senior members. We offer weekly luncheons, transportation services, and intergenerational programs that connect seniors with youth.</p>
+                            <div class="ministry-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">45</div>
+                                    <div class="stat-label">Weekly Visits</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">100+</div>
+                                    <div class="stat-label">Active Members</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ministry-card">
+                        <img src="images/bible2.jpg" alt="Music Ministry" class="ministry-img">
+                        <div class="ministry-info">
+                            <h3>Music & Arts</h3>
+                            <p>Our creative arts ministry includes choir, band, drama, and visual arts programs that enhance worship and reach the community. This year our choir performed at 3 community events and released their first worship album.</p>
+                            <div class="ministry-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">4</div>
+                                    <div class="stat-label">Worship Teams</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">60</div>
+                                    <div class="stat-label">Volunteers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ministry-card">
+                        <img src="images/bible1.jpg" alt="Missions Ministry" class="ministry-img">
+                        <div class="ministry-info">
+                            <h3>Global Missions</h3>
+                            <p>We support 12 missionaries worldwide and lead annual mission trips. This year we've funded the construction of a church building in Guatemala and a medical clinic in Kenya through our missions giving.</p>
+                            <div class="ministry-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">12</div>
+                                    <div class="stat-label">Supported Missions</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">$85K</div>
+                                    <div class="stat-label">Annual Giving</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <div class="container">
+            <h2 class="section-title">Our Leadership</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="leader-card">
+                        <img src="images/profile.jpg" alt="Associate Pastor" class="leader-img">
+                        <div class="leader-info">
+                            <h3>Rev. Sarah Williams</h3>
+                            <p>Associate Pastor</p>
+                            <p>Serving since 2012</p>
+                            <div class="leader-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="leader-card">
+                        <img src="images/profile.jpg" alt="Youth Pastor" class="leader-img">
+                        <div class="leader-info">
+                            <h3>Pastor David Chen</h3>
+                            <p>Youth Pastor</p>
+                            <p>Serving since 2018</p>
+                            <div class="leader-social">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>St. Antony's Church, Bharathapally</p>
+                    <p>Email: info@stantonyschurch.org</p>
+                    <p>Phone: +91 123 456 7890</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>Stay connected through our social media channels.</p>
+                    <div class="social-icons">
+                        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+                        <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+                        <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 St. Antony's Church, Bharathapally. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <a href="#" class="back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+        <script>
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+
+            // Back to top button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    $('.back-to-top').addClass('active');
+                } else {
+                    $('.back-to-top').removeClass('active');
+                }
+            });
+
+            $('.back-to-top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({scrollTop: 0}, '300');
+            });
+
+            // Smooth scrolling for all links
+            $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(event) {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000, function() {
+                            var $target = $(target);
+                            $target.focus();
+                            if ($target.is(":focus")) {
+                                return false;
+                            } else {
+                                $target.attr('tabindex','-1');
+                                $target.focus();
+                            }
+                        });
+                    }
+                }
+            });
+
+            // Navbar Scroll Behavior
+            document.addEventListener("DOMContentLoaded", function () {
+                const navbar = document.querySelector(".navbar");
+                const navLinks = document.querySelectorAll(".nav-link");
+                const navbarCollapse = document.querySelector(".navbar-collapse");
+                let lastScrollTop = 0;
+
+                window.addEventListener("scroll", function () {
+                    let scrollTop = window.scrollY;
+
+                    if (scrollTop === 0) {
+                        // At the top, show navbar without scrolled background
+                        navbar.classList.remove("hidden", "scrolled");
+                    } else if (scrollTop > lastScrollTop) {
+                        // Scrolling down, hide navbar
+                        navbar.classList.add("hidden");
+                        navbar.classList.add("scrolled"); // Add background when hidden
+                    } else {
+                        // Scrolling up, show navbar with background
+                        navbar.classList.remove("hidden");
+                        navbar.classList.add("scrolled");
+                    }
+
+                    // Update background color based on scroll position
+                    if (scrollTop > 50) {
+                        navbar.classList.add("scrolled");
+                    } else if (scrollTop > 0) {
+                        navbar.classList.remove("scrolled");
+                    }
+
+                    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+                });
+
+                navLinks.forEach(link => {
+                    link.addEventListener("click", () => {
+                        if (window.innerWidth <= 991) {
+                            navbarCollapse.classList.remove("show");
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

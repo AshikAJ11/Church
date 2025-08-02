@@ -1,19 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate - St. Antony's Church</title>
+    <title>Contact Us - St. Antony's Church</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS (Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Bootstrap CSS (5.3.3) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         :root {
@@ -22,7 +19,6 @@
             --accent: #e76f51;
             --light: #f8f9fa;
             --dark: #212529;
-            --success: #2a9d8f;
         }
 
         body {
@@ -38,7 +34,7 @@
             font-weight: 700;
         }
 
-        /* Navbar (from contact.html) */
+        /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
@@ -114,8 +110,8 @@
         }
 
         /* Hero Section */
-        .hero {
-              background: url('images/bible2.jpg') no-repeat center center/cover;
+        .contact-hero {
+               background: url('images/bible2.jpg') no-repeat center center/cover;
             background-size: cover;
             background-position: center;
             height: 50vh;
@@ -127,85 +123,168 @@
             color: white;
         }
 
-        .hero h1 {
+        .contact-hero h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .hero p {
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Donation Section */
-        .donation-section {
+        /* Contact Section */
+        .contact-section {
             padding: 80px 0;
             background-color: var(--light);
         }
 
-        .section-title {
-            position: relative;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            margin: 15px auto;
-        }
-
-        .form-container .card {
-            border: none;
+        .contact-container {
+            background-color: white;
             border-radius: 10px;
-            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .contact-info {
+            padding: 40px;
+            background-color: var(--primary);
+            color: white;
+            height: 100%;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .contact-info h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .contact-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 40px;
+        }
+
+        .form-section h3 {
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .form-section h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .form-control {
+            border-radius: 0;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #d1583d;
+            transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .form-label {
-            font-weight: 600;
-            color: var(--primary);
+        /* Map Section */
+        .map-section {
+            padding: 0 0 80px;
         }
 
-        .form-control, .form-select {
-            border-radius: 5px;
-            border: 1px solid var(--primary);
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-outline-primary {
-            border-color: var(--primary);
-            color: var(--primary);
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
-        .btn-outline-primary:hover, .btn-outline-primary.active {
+        /* Hours Section */
+        .hours-section {
+            padding: 60px 0;
             background-color: var(--primary);
             color: white;
         }
 
-        .btn-success {
-            background-color: var(--success);
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
+        .hours-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
         }
 
-        .btn-success:hover {
-            background-color: #1e7d73;
+        .hours-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .error-message {
-            color: #e74c3c;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: none;
+        .hours-card h4 {
+            color: var(--secondary);
+            margin-bottom: 20px;
         }
 
-        /* Footer (from contact.html) */
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
         footer {
             background-color: rgb(13, 104, 101);
             color: white;
@@ -300,52 +379,54 @@
 
         /* Responsive Styles */
         @media (max-width: 992px) {
-            .hero h1 {
+            .contact-hero h1 {
                 font-size: 3rem;
             }
-            .hero p {
-                font-size: 1.2rem;
+            
+            .contact-info, .form-section {
+                padding: 30px;
             }
         }
 
         @media (max-width: 768px) {
-            .hero {
+            .contact-hero {
                 min-height: 350px;
             }
-            .hero h1 {
+            
+            .contact-hero h1 {
                 font-size: 2.5rem;
             }
-            .section-title {
-                font-size: 2rem;
-            }
-            .footer-container {
+            
+            .contact-container {
                 flex-direction: column;
-                align-items: center;
             }
-            .footer-section {
-                text-align: center;
+            
+            .contact-info {
+                border-radius: 10px 10px 0 0;
             }
-            .form-container .card {
-                padding: 20px;
+            
+            .form-section {
+                border-radius: 0 0 10px 10px;
             }
         }
 
         @media (max-width: 576px) {
-            .hero h1 {
+            .contact-hero h1 {
                 font-size: 2rem;
             }
-            .form-container .card {
-                padding: 15px;
+            
+            .footer-container {
+                flex-direction: column;
             }
-            .btn-outline-primary {
-                font-size: 0.9rem;
-                padding: 8px 12px;
+            
+            .footer-section {
+                margin: 1rem 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar (from contact.html) -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand logo-container" href="index.html">
@@ -363,98 +444,111 @@
                     <li class="nav-item"><a class="nav-link text-black" href="festivals.html">Festivals</a></li>
                     <li class="nav-item"><a class="nav-link text-black" href="gallery.html">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link text-black" href="events.html">Events</a></li>
-                    <li class="nav-item"><a class="nav-link text-black" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-black active" href="contact.html">Contact Us</a></li>
                 </ul>   
                 <div class="d-flex ms-3">
-                    <a href="donate.html" class="donate-btn active">Donate Now</a>
+                    <a href="donate.html" class="donate-btn">Donate Now</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="donate">
+    <section class="contact-hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Support Our Mission</h1>
-                <p>Your generous donation helps us continue our community and spiritual services</p>
+            <div class="contact-hero-content">
+                <h1>Contact Our Parish</h1>
+                <p>We'd love to hear from you and welcome you to our community</p>
             </div>
         </div>
     </section>
 
-    <!-- Donation Section -->
-    <section class="donation-section">
-        <div class="container pt-5 form-container">
-            <h2 class="section-title">Donate & Enquire</h2>
-            <div class="row justify-content-center g-4" data-aos="fade-up">
-                <!-- Donation Form -->
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="card p-4 shadow-sm">
-                        <h3 class="text-center mb-3">Donate to Support</h3>
-                        <form id="donationForm">
-                            <div class="mb-3">
-                                <label for="donorName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="donorName" placeholder="Enter your name" required>
-                                <div class="error-message" id="donorNameError">Please enter your full name</div>
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row contact-container">
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
                             </div>
-                            <div class="mb-3">
-                                <label for="donorEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="donorEmail" placeholder="Enter your email" required>
-                                <div class="error-message" id="donorEmailError">Please enter a valid email address</div>
+                            <div class="contact-details">
+                                <h4>Our Address</h4>
+                                <p>St. Antony's Church, Bharathapally<br>
+                                Main Road, Near Post Office<br>
+                                Kerala, India - 689123</p>
                             </div>
-                            <div class="mb-3">
-                                <label for="upiId" class="form-label">UPI ID</label>
-                                <input type="text" class="form-control" id="upiId" value="aj@upi" readonly>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label mb-3">Select Amount</label>
-                                <div class="d-flex gap-2 flex-wrap">
-                                    <button type="button" class="btn btn-outline-primary amount-btn" data-amount="1">₹1</button>
-                                    <button type="button" class="btn btn-outline-primary amount-btn" data-amount="500">₹500</button>
-                                    <button type="button" class="btn btn-outline-primary amount-btn" data-amount="1000">₹1000</button>
+                            <div class="contact-details">
+                                <h4>Phone Numbers</h4>
+                                <p>Office: +91 123 456 7890<br>
+                                Parish Priest: +91 987 654 3210<br>
+                                Emergency: +91 999 888 7777</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email Addresses</h4>
+                                <p>General Inquiries: info@stantonyschurch.org<br>
+                                Sacraments: sacraments@stantonyschurch.org<br>
+                                Events: events@stantonyschurch.org</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Office Hours</h4>
+                                <p>Monday-Friday: 9:00 AM - 5:00 PM<br>
+                                Saturday: 9:00 AM - 1:00 PM<br>
+                                Sunday: Closed (except for Mass times)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7">
+                    <div class="form-section">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm" action="process_contact.html" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="customAmount" class="form-label mb-3">Or Enter Custom Amount</label>
-                                <input type="number" class="form-control mb-3" id="customAmount" placeholder="Enter amount" min="1">
-                                <div class="error-message" id="customAmountError">Please enter a valid donation amount</div>
+                            
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
                             </div>
-                            <button type="submit" class="btn btn-success w-100 mt-3">Proceed to Pay</button>
-                            <div class="mt-3 text-center" id="formMessage" style="display: none;"></div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Enquiry Form -->
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="card p-4 shadow-sm">
-                        <h3 class="text-center mb-3">Online Enquiry</h3>
-                        <form id="enquiryForm">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-                                <div class="error-message" id="nameError">Please enter your name</div>
+                            
+                            <div class="form-group">
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                             </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                                <div class="error-message" id="emailError">Please enter a valid email address</div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="submit-btn">Send Message</button>
                             </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Phone</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
-                                <div class="error-message" id="phoneError">Please enter a valid phone number</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="country" class="form-label">Country</label>
-                                <input type="text" class="form-control" id="country" placeholder="Enter your country">
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control" id="message" placeholder="Enter your message" rows="4" required></textarea>
-                                <div class="error-message" id="messageError">Please enter your message</div>
-                            </div>
-                            <button type="submit" class="btn btn-success w-100">Submit</button>
-                            <div class="mt-3 text-center" id="enquiryFormMessage" style="display: none;"></div>
                         </form>
                     </div>
                 </div>
@@ -462,7 +556,75 @@
         </div>
     </section>
 
-    <!-- Footer (from contact.html) -->
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Find Us</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d971.8900941149643!2d80.19944189919738!3d12.999946300000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52672ee36f792d%3A0xdd97e1062821d9a5!2sSt.%20Anthony&#39;s%20Church%20Alandur!5e0!3m2!1sen!2sin!4v1754151456289!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours Section -->
+    <section class="hours-section">
+        <div class="container">
+            <h2 class="section-title text-white">Mass & Service Times</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="hours-card">
+                        <h4>Weekday Masses</h4>
+                        <div class="hours-item">
+                            <span>Monday-Friday</span>
+                            <span>6:30 AM & 6:30 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Saturday</span>
+                            <span>6:30 AM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="hours-card">
+                        <h4>Sunday Masses</h4>
+                        <div class="hours-item">
+                            <span>First Mass</span>
+                            <span>6:00 AM (Malayalam)</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Second Mass</span>
+                            <span>8:00 AM (English)</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Third Mass</span>
+                            <span>10:00 AM (Malayalam)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="hours-card">
+                        <h4>Special Services</h4>
+                        <div class="hours-item">
+                            <span>Confession</span>
+                            <span>Sat 4:00-5:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Adoration</span>
+                            <span>Thu 5:00-6:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Rosary</span>
+                            <span>Daily 5:30 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -477,7 +639,6 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="festivals.html">Festivals</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="events.html">Events</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -504,17 +665,9 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-
         // Back to top button
         $(window).scroll(function() {
             if ($(this).scrollTop() > 300) {
@@ -529,7 +682,27 @@
             $('html, body').animate({scrollTop: 0}, '300');
         });
 
-        // Navbar Scroll Behavior (from contact.html)
+        // Form submission handling
+        $('#contactForm').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var formData = form.serialize();
+            
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: formData,
+                success: function(response) {
+                    alert('Thank you! Your message has been sent. We will get back to you soon.');
+                    form[0].reset();
+                },
+                error: function() {
+                    alert('There was an error sending your message. Please try again later.');
+                }
+            });
+        });
+
+        // Navbar Scroll Behavior
         document.addEventListener("DOMContentLoaded", function () {
             const navbar = document.querySelector(".navbar");
             const navLinks = document.querySelectorAll(".nav-link");
@@ -589,112 +762,6 @@
                 }
             });
         });
-
-        // Donation Form Handling
-        $(document).ready(function () {
-            // Predefined amount button click event
-            $('.amount-btn').click(function () {
-                let amount = $(this).data('amount');
-                $('#customAmount').val(amount);
-                $('.amount-btn').removeClass('active');
-                $(this).addClass('active');
-            });
-
-            // Donation form submission
-            $('#donationForm').submit(function (event) {
-                event.preventDefault();
-                let isValid = true;
-                const name = $('#donorName').val().trim();
-                const email = $('#donorEmail').val().trim();
-                const upiId = $('#upiId').val();
-                const amount = $('#customAmount').val();
-                const formMessage = $('#formMessage');
-
-                // Reset error messages
-                $('.error-message').hide();
-                formMessage.hide();
-
-                // Validate Name
-                if (!name) {
-                    $('#donorNameError').show();
-                    isValid = false;
-                }
-
-                // Validate Email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!email || !emailRegex.test(email)) {
-                    $('#donorEmailError').show();
-                    isValid = false;
-                }
-
-                // Validate Donation Amount
-                if (!amount || amount <= 0) {
-                    $('#customAmountError').show();
-                    isValid = false;
-                }
-
-                // Show success or error message
-                if (isValid) {
-                    // Redirect to UPI Payment
-                    let upiLink = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&mc=&tid=&tr=&tn=Donation&am=${amount}&cu=INR`;
-                    formMessage.text('Redirecting to UPI payment...').css('color', 'var(--success)').show();
-                    setTimeout(() => {
-                        window.location.href = upiLink;
-                    }, 1000);
-                } else {
-                    formMessage.text('Please fill out all fields correctly.').css('color', '#e74c3c').show();
-                }
-            });
-
-            // Enquiry Form Submission
-            $('#enquiryForm').submit(function (event) {
-                event.preventDefault();
-                let isValid = true;
-                const name = $('#name').val().trim();
-                const email = $('#email').val().trim();
-                const phone = $('#phone').val().trim();
-                const message = $('#message').val().trim();
-                const enquiryFormMessage = $('#enquiryFormMessage');
-
-                // Reset error messages
-                $('.error-message').hide();
-                enquiryFormMessage.hide();
-
-                // Validate Name
-                if (!name) {
-                    $('#nameError').show();
-                    isValid = false;
-                }
-
-                // Validate Email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!email || !emailRegex.test(email)) {
-                    $('#emailError').show();
-                    isValid = false;
-                }
-
-                // Validate Phone (optional, but if provided, check format)
-                if (phone && !/^\+?\d{10,15}$/.test(phone)) {
-                    $('#phoneError').show();
-                    isValid = false;
-                }
-
-                // Validate Message
-                if (!message) {
-                    $('#messageError').show();
-                    isValid = false;
-                }
-
-                // Show success or error message
-                if (isValid) {
-                    enquiryFormMessage.text('Thank you for your enquiry! We will get back to you soon.').css('color', 'var(--success)').show();
-                    this.reset();
-                } else {
-                    enquiryFormMessage.text('Please fill out all required fields correctly.').css('color', '#e74c3c').show();
-                }
-            });
-        });
     </script>
 </body>
 </html>
- 

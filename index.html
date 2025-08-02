@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,106 +13,114 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- AOS (Animate On Scroll) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-      <!-- Bootstrap CSS (5.3.3) -->
+    <!-- Bootstrap CSS (5.3.3) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <!-- WOW.js Animation Library -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script> -->
- <style>
-    footer {
-        background-color: #801e1eff;
-        color: white;
-        padding: 2rem 1rem;
-        margin-top: 2rem;
-    }
-    .footer-container {
-        display: flex;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
-        flex-wrap: wrap;
-    }
-    .footer-section {
-        flex: 1;
-        margin: 1rem;
-        min-width: 200px;
-    }
-    .footer-section h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    .footer-section p, .footer-section ul li {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-    .footer-section ul {
-        list-style: none;
-        padding: 0;
-    }
-    .footer-section ul li a {
-        color: white;
-        text-decoration: none;
-    }
-    .footer-section ul li a:hover {
-        color: #d4a017;
-    }
-    .social-icons a {
-        margin-right: 1rem;
-    }
-    .social-icons img {
-        width: 24px;
-        height: 24px;
-    }
-    .footer-bottom {
-        text-align: center;
-        padding-top: 1rem;
-        border-top: 1px solid #6b4e31;
-        margin-top: 1rem;
-    }
-    @media (max-width: 768px) {
+    <!-- Lightbox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <style>
+        /* Prevent horizontal overflow globally */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: rgb(13, 104, 101);
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
         .footer-container {
-            flex-direction: column;
-            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            max-width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            box-sizing: border-box;
         }
         .footer-section {
+            flex: 1;
+            margin: 1rem;
+            min-width: 0;
+            max-width: 100%;
+        }
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .footer-section p, .footer-section ul li {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer-section ul li a:hover {
+            color: #d4a017;
+        }
+        .social-icons a {
+            margin-right: 1rem;
+        }
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+        .footer-bottom {
             text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #6b4e31;
+            margin-top: 1rem;
         }
-    }
-</style>
-       <style>
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-section {
+                text-align: center;
+            }
+        }
+
         .navbar {
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            z-index: 1000;
-            transition: background-color 0.3s ease;
+            z-index: 1050;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             background-color: transparent;
+            transform: translateY(0);
         }
-
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
         .navbar.scrolled {
-            background-color: #801e1eff !important;
+            background-color: rgb(13, 104, 101) !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
         }
-
         .navbar.scrolled .nav-link,
         .navbar.scrolled .navbar-brand i {
             color: white !important;
         }
-
         .logo {
             height: 50px;
         }
-
         .nav-item {
             padding-left: 15px;
             padding-right: 15px;
         }
-
         .nav-link {
             transition: color 0.3s ease-in-out;
         }
-
         .donate-btn {
             background-color: #e74c3c;
             color: white;
@@ -121,7 +128,6 @@
             border-radius: 5px;
             text-decoration: none;
         }
-
         @media (max-width: 991px) {
             .navbar-nav {
                 text-align: center;
@@ -135,7 +141,6 @@
                 width: fit-content;
             }
         }
-
         @media (max-width: 767px) {
             .navbar-brand i {
                 font-size: 18px;
@@ -149,12 +154,10 @@
         }
         .main_bg_color {
             background-color: #f8f3f3;
-            /* background-color:rgb(126, 141, 172); */
         }
         .text-justify {
             text-align: justify;
         }
-     
         .cursive {
             font-family: cursive;
             color: rgb(226, 41, 41);
@@ -164,8 +167,6 @@
             color: rgb(226, 41, 41);
         }
 
-    </style>
-    <style>
         :root {
             --primary: #3a5a78;
             --secondary: #e9c46a;
@@ -174,25 +175,22 @@
             --dark: #212529;
             --success: #2a9d8f;
         }
-        
         body {
             font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
             color: var(--dark);
             overflow-x: hidden;
+            padding-top: 70px; /* Prevent content overlap with fixed navbar */
         }
-        
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
         }
-        
         .section-title {
             position: relative;
             margin-bottom: 3rem;
             text-align: center;
         }
-        
         .section-title:after {
             content: '';
             display: block;
@@ -201,13 +199,11 @@
             background: var(--secondary);
             margin: 15px auto;
         }
-        
         /* Hero Section */
         .hero {
             background: url('images/bible2.jpg') no-repeat center center/cover;
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             height: 92vh;
             min-height: 600px;
             display: flex;
@@ -217,24 +213,25 @@
             color: white;
             position: relative;
         }
-        
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+        }
         .hero-content {
             max-width: 800px;
             padding: 0 20px;
         }
-        
         .hero-content h1 {
             font-size: 4rem;
             margin-bottom: 1.5rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        
         .hero-content p {
             font-size: 1.5rem;
             margin-bottom: 2rem;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
-        
         /* Buttons */
         .btn-custom {
             background-color: var(--accent);
@@ -251,25 +248,21 @@
             display: inline-block;
             margin: 0.5rem;
         }
-        
         .btn-custom:hover {
             background-color: #d1583d;
             color: white;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
         .btn-outline-custom {
             background-color: transparent;
             border: 2px solid white;
             color: white;
         }
-        
         .btn-outline-custom:hover {
             background-color: white;
             color: var(--dark);
         }
-        
         /* Scroll Arrow Button */
         .scroll-arrow {
             display: inline-flex;
@@ -289,44 +282,40 @@
             transition: all 0.3s ease;
             animation: bounce 2s infinite;
         }
-        
         .scroll-arrow:hover {
             background-color: var(--secondary);
             color: white;
         }
-        
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
             40% {transform: translateY(-20px) translateX(-50%);}
             60% {transform: translateY(-10px) translateX(-50%);}
         }
-        
         /* About Section */
         .about-section {
             padding: 100px 0;
             background-color: var(--light);
         }
-        
         .about-img {
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
-        
         .about-img:hover {
             transform: scale(1.03);
         }
-        
+        .about-img img {
+            max-width: 100%;
+            height: auto;
+        }
         .about-content {
             padding-left: 30px;
         }
-        
         .about-content .highlight {
             color: var(--accent);
             font-weight: 600;
         }
-        
         /* Services Section */
         .services-section {
             padding: 100px 0;
@@ -334,7 +323,6 @@
             position: relative;
             color: white;
         }
-        
         .services-section::before {
             content: '';
             position: absolute;
@@ -344,7 +332,6 @@
             height: 100%;
             background-color: rgba(58, 90, 120, 0.9);
         }
-        
         .service-card {
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
@@ -354,23 +341,19 @@
             color: var(--dark);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
-        
         .service-icon {
             font-size: 3rem;
             color: var(--accent);
             margin-bottom: 20px;
         }
-        
         /* Events Section */
         .events-section {
             padding: 100px 0;
         }
-        
         .event-card {
             border-radius: 10px;
             overflow: hidden;
@@ -378,45 +361,37 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
-        
         .event-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
-        
         .event-date {
             background-color: var(--primary);
             color: white;
             padding: 15px;
             text-align: center;
         }
-        
         .event-date .day {
             font-size: 2rem;
             font-weight: 700;
             display: block;
         }
-        
         .event-date .month {
             font-size: 1rem;
             text-transform: uppercase;
             display: block;
         }
-        
         .event-info {
             padding: 20px;
         }
-        
         .event-info h4 {
             color: var(--primary);
         }
-        
         /* Sermons Section */
         .sermons-section {
             padding: 100px 0;
             background-color: var(--light);
         }
-        
         .sermon-card {
             border-radius: 10px;
             overflow: hidden;
@@ -424,16 +399,17 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
-        
         .sermon-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
-        
         .sermon-img {
             position: relative;
         }
-        
+        .sermon-img img {
+            max-width: 100%;
+            height: auto;
+        }
         .play-btn {
             position: absolute;
             top: 50%;
@@ -450,40 +426,38 @@
             font-size: 1.5rem;
             transition: all 0.3s ease;
         }
-        
         .play-btn:hover {
             background-color: var(--accent);
             transform: translate(-50%, -50%) scale(1.1);
         }
-        
         /* Ministries Section */
         .ministries-section {
             padding: 100px 0;
         }
-        
         .ministry-tabs-container {
             position: relative;
             margin-bottom: 30px;
+            max-width: 100%;
+            overflow-x: hidden;
+            box-sizing: border-box;
         }
-        
         .ministry-tabs-scroll {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             white-space: nowrap;
             padding-bottom: 15px;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
+            max-width: 100%;
+            box-sizing: border-box;
         }
-        
         .ministry-tabs-scroll::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
+            display: none;
         }
-        
         .nav-tabs {
             display: inline-flex;
             flex-wrap: nowrap;
             border-bottom: none;
         }
-        
         .nav-tabs .nav-link {
             color: var(--dark);
             font-weight: 600;
@@ -495,25 +469,32 @@
             border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
         }
-        
         .nav-tabs .nav-link.active {
             color: var(--accent);
             background-color: transparent;
             border-bottom: 3px solid var(--accent);
         }
-        
         .nav-tabs .nav-link:hover {
             border-bottom: 3px solid var(--accent);
         }
-        
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            .nav-tabs .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+            .tab-scroll-arrow {
+                display: none;
+            }
+        }
         .ministry-content {
             padding: 30px;
             background-color: var(--light);
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
-        
-        /* Scroll arrows for tabs */
         .tab-scroll-arrow {
             position: absolute;
             top: 0;
@@ -528,27 +509,22 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-        
         .tab-scroll-arrow.left {
             left: 0;
             background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
         }
-        
         .tab-scroll-arrow.right {
             right: 0;
             background: linear-gradient(270deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
         }
-        
         .ministry-tabs-container:hover .tab-scroll-arrow {
             opacity: 1;
         }
-        
         /* Gallery Section */
         .gallery-section {
             padding: 100px 0;
             background-color: var(--light);
         }
-        
         .gallery-item {
             margin-bottom: 30px;
             overflow: hidden;
@@ -556,18 +532,15 @@
             position: relative;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
         .gallery-item img {
             transition: transform 0.5s ease;
-            width: 100%;
+            max-width: 100%;
             height: 250px;
             object-fit: cover;
         }
-        
         .gallery-item:hover img {
             transform: scale(1.1);
         }
-        
         .gallery-overlay {
             position: absolute;
             top: 0;
@@ -581,23 +554,19 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
-        
         .gallery-overlay i {
             color: white;
             font-size: 2rem;
         }
-        
         /* Contact Section */
         .contact-section {
             padding: 100px 0;
             background: url('images/map-bg.jpg') center/cover no-repeat fixed;
             position: relative;
         }
-        
         .contact-section::before {
             content: '';
             position: absolute;
@@ -607,7 +576,6 @@
             height: 100%;
             background-color: rgba(255, 255, 255, 0.9);
         }
-        
         .contact-info {
             background-color: white;
             padding: 30px;
@@ -615,13 +583,11 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             height: 100%;
         }
-        
         .contact-info i {
             color: var(--accent);
             font-size: 1.5rem;
             margin-bottom: 15px;
         }
-        
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -641,68 +607,55 @@
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        
         .back-to-top.active {
             opacity: 1;
             visibility: visible;
         }
-        
         .back-to-top:hover {
             background-color: #d1583d;
             transform: translateY(-5px);
         }
-        
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero-content h1 {
                 font-size: 3rem;
             }
-            
             .hero-content p {
                 font-size: 1.2rem;
             }
-            
             .about-content {
                 padding-left: 0;
                 margin-top: 30px;
             }
         }
-        
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-            
             .section-title {
                 font-size: 2rem;
             }
-            
             .scroll-arrow {
                 width: 40px;
                 height: 40px;
                 bottom: 20px;
             }
-            
             .nav-tabs .nav-link {
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
         }
-        
         @media (max-width: 576px) {
             .hero {
                 min-height: 500px;
             }
-            
             .hero-content h1 {
                 font-size: 2rem;
             }
-            
             .btn-custom {
                 padding: 10px 20px;
                 font-size: 0.8rem;
             }
-            
             .nav-tabs .nav-link {
                 padding: 8px 12px;
                 font-size: 0.8rem;
@@ -711,9 +664,9 @@
     </style>
 </head>
 <body>
-        <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white shadow" style="z-index: 1050;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="z-index: 1050;">
         <div class="container">
-            <a class="navbar-brand logo-container" href="index.php">
+            <a class="navbar-brand logo-container" href="index.html">
                 <img src="images/logo.jpg" class="logo" alt="Logo">
                 <i class="ms-2" style="font-size: 24px;">St.Antony'S Church</i>
             </a>
@@ -723,15 +676,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-black" href="index.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-black" href="">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link text-black" href="">Festivals</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="festivals.html">Festivals</a></li>
                     <li class="nav-item"><a class="nav-link text-black" href="">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link text-black" href="events.php">Events</a></li>
-                <li class="nav-item"><a class="nav-link text-black" href="">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="">Contact Us</a></li>
                 </ul>   
                 <div class="d-flex ms-3">
-                    <a href="donate.php" class="donate-btn">Donate Now</a>
+                    <a href="donate.html" class="donate-btn">Donate Now</a>
                 </div>
             </div>
         </div>
@@ -750,7 +703,6 @@
             <i class="fas fa-arrow-down"></i>
         </a>
     </section>
-
     <!-- About Section -->
     <section class="about-section" id="about">
         <div class="container">
@@ -772,7 +724,6 @@
             </div>
         </div>
     </section>
-
     <!-- Services Section -->
     <section class="services-section" id="services">
         <div class="container position-relative">
@@ -811,7 +762,6 @@
             </div>
         </div>
     </section>
-
     <!-- Events Section -->
     <section class="events-section" id="events">
         <div class="container">
@@ -865,7 +815,6 @@
             </div>
         </div>
     </section>
-
     <!-- Sermons Section -->
     <section class="sermons-section" id="sermons">
         <div class="container">
@@ -883,9 +832,6 @@
                             <h4>The Power of Faith</h4>
                             <p class="text-muted">Pastor John Smith | May 28, 2023</p>
                             <p>Exploring how faith transforms our lives and circumstances.</p>
-                            <div class="d-flex justify-content-between mt-3">
-                                <!-- <a href="#" class="btn btn-custom btn-sm">Watch</a> -->
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -901,9 +847,6 @@
                             <h4>Living With Purpose</h4>
                             <p class="text-muted">Pastor Sarah Johnson | May 21, 2023</p>
                             <p>Discovering God's unique purpose for your life.</p>
-                            <div class="d-flex justify-content-between mt-3">
-                                <!-- <a href="#" class="btn btn-custom btn-sm">Watch</a> -->
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -919,9 +862,6 @@
                             <h4>Overcoming Anxiety</h4>
                             <p class="text-muted">Pastor Michael Brown | May 14, 2023</p>
                             <p>Biblical strategies for finding peace in stressful times.</p>
-                            <div class="d-flex justify-content-between mt-3">
-                                <!-- <a href="#" class="btn btn-custom btn-sm">Watch</a> -->
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -931,7 +871,6 @@
             </div>
         </div>
     </section>
-
     <!-- Ministries Section -->
     <section class="ministries-section" id="ministries">
         <div class="container">
@@ -1059,36 +998,35 @@
                                 <a href="#" class="btn btn-custom">Learn More</a>
                             </div>
                         </div>
-                    <div class="tab-pane fade" id="pangu" role="tabpanel">
-                        <div class="ministry-content">
-                            <h3>Pangu Peravai</h3>
-                            <p>The Pangu Peravai ministry coordinates various church activities and serves as a bridge between the parish priest and the congregation.</p>
-                            <p><strong>Meeting Times:</strong> First Sunday of each month after Mass</p>
-                            <a href="#" class="btn btn-custom">Learn More</a>
+                        <div class="tab-pane fade" id="pangu" role="tabpanel">
+                            <div class="ministry-content">
+                                <h3>Pangu Peravai</h3>
+                                <p>The Pangu Peravai ministry coordinates various church activities and serves as a bridge between the parish priest and the congregation.</p>
+                                <p><strong>Meeting Times:</strong> First Sunday of each month after Mass</p>
+                                <a href="#" class="btn btn-custom">Learn More</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="aamosa" role="tabpanel">
-                        <div class="ministry-content">
-                            <h3>Aamosa</h3>
-                            <p>Our Aamosa ministry focuses on charitable works, providing assistance to needy families and individuals in our community.</p>
-                            <p><strong>Meeting Times:</strong> Second Sunday of each month at 2:00 PM</p>
-                            <a href="#" class="btn btn-custom">Learn More</a>
+                        <div class="tab-pane fade" id="aamosa" role="tabpanel">
+                            <div class="ministry-content">
+                                <h3>Aamosa</h3>
+                                <p>Our Aamosa ministry focuses on charitable works, providing assistance to needy families and individuals in our community.</p>
+                                <p><strong>Meeting Times:</strong> Second Sunday of each month at 2:00 PM</p>
+                                <a href="#" class="btn btn-custom">Learn More</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="teachers" role="tabpanel">
-                        <div class="ministry-content">
-                            <h3>Teachers Meeting</h3>
-                            <p>This group coordinates religious education programs and provides training for Sunday school teachers and catechists.</p>
-                            <p><strong>Meeting Times:</strong> Last Saturday of each month at 10:00 AM</p>
-                            <a href="#" class="btn btn-custom">Learn More</a>
+                        <div class="tab-pane fade" id="teachers" role="tabpanel">
+                            <div class="ministry-content">
+                                <h3>Teachers Meeting</h3>
+                                <p>This group coordinates religious education programs and provides training for Sunday school teachers and catechists.</p>
+                                <p><strong>Meeting Times:</strong> Last Saturday of each month at 10:00 AM</p>
+                                <a href="#" class="btn btn-custom">Learn More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
     <!-- Gallery Section -->
     <section class="gallery-section" id="gallery">
         <div class="container">
@@ -1180,7 +1118,6 @@
             </div>
         </div>
     </section>
-
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container position-relative">
@@ -1236,52 +1173,47 @@
             </div>
         </div>
     </section>
-<footer>
-    <div class="footer-container">
-        <div class="footer-section">
-            <h3>Contact Us</h3>
-            <p>St. Antony's Church, Bharathapally</p>
-            <p>Email: info@stantonyschurch.org</p>
-            <p>Phone: +91 123 456 7890</p>
-        </div>
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="services.php">Services</a></li>
-                <li><a href="events.php">Events</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Follow Us</h3>
-            <p>Stay connected through our social media channels.</p>
-            <div class="social-icons">
-                <a href="#"><img src="facebook.png" alt="Facebook"></a>
-                <a href="#"><img src="twitter.png" alt="Twitter"></a>
-                <a href="#"><img src="instagram.png" alt="Instagram"></a>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>St. Antony's Church, Bharathapally</p>
+                <p>Email: info@stantonyschurch.org</p>
+                <p>Phone: +91 123 456 7890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay connected through our social media channels.</p>
+                <div class="social-icons">
+                    <a href="#"><img src="facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="instagram.png" alt="Instagram"></a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2025 St. Antony's Church, Bharathapally. All rights reserved.</p>
-    </div>
-</footer>
-
+        <div class="footer-bottom">
+            <p>© 2025 St. Antony's Church, Bharathapally. All rights reserved.</p>
+        </div>
+    </footer>
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
-
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS (Animate On Scroll) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Lightbox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         // Initialize AOS
         AOS.init({
@@ -1289,7 +1221,6 @@
             easing: 'ease-in-out',
             once: true
         });
-        
         // Back to top button
         $(window).scroll(function() {
             if ($(this).scrollTop() > 300) {
@@ -1298,12 +1229,10 @@
                 $('.back-to-top').removeClass('active');
             }
         });
-        
         $('.back-to-top').click(function(e) {
             e.preventDefault();
             $('html, body').animate({scrollTop: 0}, '300');
         });
-        
         // Hide scroll arrow when scrolling starts
         $(window).scroll(function() {
             if ($(this).scrollTop() > 100) {
@@ -1312,7 +1241,6 @@
                 $('.scroll-arrow').fadeIn();
             }
         });
-        
         // Smooth scrolling for all links
         $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(event) {
             if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -1321,7 +1249,7 @@
                 if (target.length) {
                     event.preventDefault();
                     $('html, body').animate({
-                        scrollTop: target.offset().top
+                        scrollTop: target.offset().top - 70 // Adjust for fixed navbar height
                     }, 1000, function() {
                         var $target = $(target);
                         $target.focus();
@@ -1335,23 +1263,35 @@
                 }
             }
         });
-    </script>
-        <script>
+        // Navbar Scroll Behavior
         document.addEventListener("DOMContentLoaded", function () {
             const navbar = document.querySelector(".navbar");
             const navLinks = document.querySelectorAll(".nav-link");
             const navbarCollapse = document.querySelector(".navbar-collapse");
+            let lastScrollTop = 0;
 
-            // Navbar Scroll Behavior
             window.addEventListener("scroll", function () {
-                if (window.scrollY > 50) {
+                let scrollTop = window.scrollY;
+
+                if (scrollTop === 0) {
+                    navbar.classList.remove("hidden", "scrolled");
+                } else if (scrollTop > lastScrollTop) {
+                    navbar.classList.add("hidden");
                     navbar.classList.add("scrolled");
                 } else {
+                    navbar.classList.remove("hidden");
+                    navbar.classList.add("scrolled");
+                }
+
+                if (scrollTop > 50) {
+                    navbar.classList.add("scrolled");
+                } else if (scrollTop > 0) {
                     navbar.classList.remove("scrolled");
                 }
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             });
 
-            // Close navbar on mobile when clicking a link
             navLinks.forEach(link => {
                 link.addEventListener("click", () => {
                     if (window.innerWidth <= 991) {
@@ -1360,21 +1300,6 @@
                 });
             });
         });
-
-        // Intersection Observer for Animations (optional, remove if not used)
-        const sections = document.querySelectorAll('.animate-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                } else {
-                    entry.target.classList.remove('animate__animated', 'animate__fadeInUp');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => observer.observe(section));
     </script>
 </body>
 </html>
-

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festivals - St. Antony's Church</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Bootstrap CSS (5.3.3) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #3a5a78;
+            --secondary: #e9c46a;
+            --accent: #e76f51;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #2a9d8f;
+        }
+
+        /* Prevent horizontal overflow globally */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            background-color: transparent;
+            transform: translateY(0);
+        }
+
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+
+        .navbar.scrolled {
+            background-color: rgb(13, 104, 101) !important;
+            transform: translateY(0);
+        }
+
+        .navbar.scrolled .nav-link,
+        .navbar.scrolled .navbar-brand i {
+            color: white !important;
+        }
+
+        .nav-link.active {
+            color: var(--accent) !important;
+            font-weight: 600;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .nav-item {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .nav-link {
+            transition: color 0.3s ease-in-out;
+        }
+
+        .donate-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav {
+                text-align: center;
+            }
+            .nav-item {
+                padding: 10px 0;
+            }
+            .donate-btn {
+                margin: 10px auto;
+                display: block;
+                width: fit-content;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar-brand i {
+                font-size: 18px;
+            }
+            .logo {
+                height: 40px;
+            }
+        }
+
+        /* Hero Section */
+        .festival-hero {
+           background: url('images/bible2.jpg') no-repeat center center/cover;
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .festival-hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Festivals Section */
+        .festivals-section {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .festival-card {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .festival-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .festival-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .festival-info {
+            padding: 25px;
+        }
+
+        .festival-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .festival-date {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .festival-description {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgb(13, 104, 101);
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin: 1rem;
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section ul li {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: #d4a017;
+        }
+
+        .social-icons a {
+            margin-right: 1rem;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #6b4e31;
+            margin-top: 1rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #d1583d;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .festival-hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .festival-hero {
+                min-height: 350px;
+                background-attachment: scroll;
+            }
+
+            .festival-hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-section {
+                margin: 1rem 0;
+            }
+
+            .social-icons {
+                justify-content: center;
+                display: flex;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .festival-hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow" style="z-index: 1050;">
+        <div class="container">
+            <a class="navbar-brand logo-container" href="index.html">
+                <img src="images/logo.jpg" class="logo" alt="Logo">
+                <i class="ms-2" style="font-size: 24px;">St. Antony's Church</i>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-black" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-black active" href="festivals.html">Festivals</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link text-black" href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <a href="donate.html" class="donate-btn">Donate Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="festival-hero">
+        <div class="container">
+            <div class="festival-hero-content">
+                <h1 class="animate__animated animate__fadeInDown">Our Sacred Festivals</h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Celebrate the rich traditions of our Roman Catholic faith</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festivals Section -->
+    <section class="festivals-section">
+        <div class="container">
+            <h2 class="section-title">Roman Catholic Festivals in 2025</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="festival-card">
+                        <img src="images/mary-mother.jpg" alt="Solemnity of Mary" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Solemnity of Mary, Mother of God</h3>
+                            <div class="festival-date">January 1, 2025</div>
+                            <div class="festival-description">
+                                This solemnity, a Holy Day of Obligation, celebrates Mary as the Mother of God, emphasizing her role in the Incarnation. Catholics attend Mass to honor her divine motherhood, with the Gloria and Credo recited. The feast reflects on Mary's fiat and her significance in salvation history.[](https://icalendars.net/religion/catholicism/)[](https://www.easterbrooks.com/personal/cal_v2/yearly.html)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="festival-card">
+                        <img src="images/epiphany.jpg" alt="Epiphany" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Epiphany of the Lord</h3>
+                            <div class="festival-date">January 5, 2025</div>
+                            <div class="festival-description">
+                                Commemorates the visit of the Magi to the infant Jesus, symbolizing His manifestation to the Gentiles. Celebrated with special Masses, the blessing of chalk, and house blessings in some traditions. In the U.S., it’s observed on the Sunday between January 2 and 8.[](https://www.cbcew.org.uk/religious-festivals/)[](https://www.easterbrooks.com/personal/cal_v2/yearly.html)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="festival-card">
+                        <img src="images/ash-wednesday.jpg" alt="Ash Wednesday" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Ash Wednesday</h3>
+                            <div class="festival-date">March 5, 2025</div>
+                            <div class="festival-description">
+                                Marks the start of Lent, a 40-day period of penance. Catholics receive ashes on their foreheads as a sign of repentance, with the words, “Repent and believe in the Gospel.” Fasting and abstinence are observed, and Mass is attended.[](https://icalendars.net/religion/catholicism/)[](https://www.quora.com/What-festivals-do-Roman-Catholics-celebrate)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="festival-card">
+                        <img src="images/palm-sunday.jpg" alt="Palm Sunday" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Palm Sunday</h3>
+                            <div class="festival-date">April 13, 2025</div>
+                            <div class="festival-description">
+                                Begins Holy Week, commemorating Jesus’ triumphal entry into Jerusalem. Palms are blessed and distributed, often carried in processions. The Passion narrative is read during Mass, preparing Catholics for the events of Holy Week.[](https://icalendars.net/religion/catholicism/)[](https://catholicism.website/catholicism/a-guide-to-catholic-holidays-and-festivals/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="festival-card">
+                        <img src="images/holy-thursday.jpg" alt="Holy Thursday" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Holy Thursday</h3>
+                            <div class="festival-date">April 17, 2025</div>
+                            <div class="festival-description">
+                                Celebrates the Last Supper, where Jesus instituted the Eucharist and the priesthood. The Mass of the Lord’s Supper includes the washing of feet, symbolizing service. The Eucharist is processed to an altar of repose for adoration.[](https://icalendars.net/religion/catholicism/)[](https://catholicism.website/catholicism/a-guide-to-catholic-holidays-and-festivals/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="festival-card">
+                        <img src="images/good-friday.jpg" alt="Good Friday" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Good Friday</h3>
+                            <div class="festival-date">April 18, 2025</div>
+                            <div class="festival-description">
+                                A day of fasting and penance commemorating Jesus’ crucifixion. The liturgy includes the Passion reading, veneration of the Cross, and Communion from pre-consecrated hosts. Churches are stripped bare, reflecting solemnity.[](https://icalendars.net/religion/catholicism/)[](https://catholicism.website/catholicism/a-guide-to-catholic-holidays-and-festivals/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="festival-card">
+                        <img src="images/easter.jpg" alt="Easter Sunday" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Easter Sunday</h3>
+                            <div class="festival-date">April 20, 2025</div>
+                            <div class="festival-description">
+                                The pinnacle of the liturgical year, celebrating Jesus’ Resurrection. The Easter Vigil and Sunday Masses feature the Gloria, renewal of baptismal vows, and festive liturgies. Easter eggs and meals symbolize new life.[](https://icalendars.net/religion/catholicism/)[](https://catholicism.website/catholicism/a-guide-to-catholic-holidays-and-festivals/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="festival-card">
+                        <img src="images/ascension.jpg" alt="Ascension" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Ascension of the Lord</h3>
+                            <div class="festival-date">May 29, 2025</div>
+                            <div class="festival-description">
+                                Marks Jesus’ ascension into heaven 40 days after Easter. Often transferred to the following Sunday in many dioceses (June 1, 2025, in the U.S.). Masses include the Gloria and focus on Christ’s exaltation.[](https://icalendars.net/religion/catholicism/)[](https://catholicism.website/catholicism/a-guide-to-catholic-holidays-and-festivals/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="festival-card">
+                        <img src="images/pentecost.jpg" alt="Pentecost" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Pentecost Sunday</h3>
+                            <div class="festival-date">June 8, 2025</div>
+                            <div class="festival-description">
+                                Celebrates the descent of the Holy Spirit on the Apostles, marking the birth of the Church. Red vestments are worn, and the Sequence is sung. Masses emphasize empowerment for mission.[](https://www.diversityresources.com/interfaith-calendar-2025/)[](https://catholicism.website/catholicism/a-guide-to-catholic-holidays-and-festivals/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="festival-card">
+                        <img src="images/corpus-christi.jpg" alt="Corpus Christi" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Feast of Corpus Christi</h3>
+                            <div class="festival-date">June 19, 2025</div>
+                            <div class="festival-description">
+                                Honors the Eucharist as the Body and Blood of Christ. Celebrated with Masses and processions carrying the Blessed Sacrament. In some regions, it’s moved to the following Sunday (June 22, 2025).[](https://factsanddetails.com/world/cat55/sub392/entry-5812.html)[](https://www.diversityresources.com/interfaith-calendar-2025/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="festival-card">
+                        <img src="images/assumption.jpg" alt="Assumption" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Assumption of the Blessed Virgin Mary</h3>
+                            <div class="festival-date">August 15, 2025</div>
+                            <div class="festival-description">
+                                A Holy Day of Obligation celebrating Mary’s assumption into heaven. Masses include the Gloria and focus on her role as Queen of Heaven. Local traditions may include processions and Marian devotions.[](https://www.diversityresources.com/interfaith-calendar-2025/)[](https://catholicism.website/catholicism/a-guide-to-catholic-holidays-and-festivals/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="festival-card">
+                        <img src="images/all-saints.jpg" alt="All Saints' Day" class="festival-img">
+                        <div class="festival-info">
+                            <h3>All Saints’ Day</h3>
+                            <div class="festival-date">November 1, 2025</div>
+                            <div class="festival-description">
+                                A Holy Day of Obligation honoring all saints, known and unknown. Catholics attend Mass to celebrate the communion of saints. The day encourages reflection on holiness and martyrdom.[](https://factsanddetails.com/world/cat55/sub392/entry-5812.html)[](https://catholicism.website/catholicism/a-guide-to-catholic-holidays-and-festivals/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="festival-card">
+                        <img src="images/christmas.jpg" alt="Christmas" class="festival-img">
+                        <div class="festival-info">
+                            <h3>Christmas</h3>
+                            <div class="festival-date">December 25, 2025</div>
+                            <div class="festival-description">
+                                Celebrates the Nativity of Jesus, a Holy Day of Obligation. Masses include the Christmas Vigil, Midnight Mass, and Dawn/Day Masses, with the Gloria and festive decorations. Advent precedes it with four weeks of preparation.[](https://icalendars.net/religion/catholicism/)[](https://catholicism.website/catholicism/a-guide-to-catholic-holidays-and-festivals/)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>St. Antony's Church, Bharathapally</p>
+                <p>Email: info@stantonyschurch.org</p>
+                <p>Phone: +91 123 456 7890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay connected through our social media channels.</p>
+                <div class="social-icons">
+                    <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 St. Antony's Church, Bharathapally. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Back to top button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('.back-to-top').addClass('active');
+            } else {
+                $('.back-to-top').removeClass('active');
+            }
+        });
+
+        $('.back-to-top').click(function(e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop: 0}, '300');
+        });
+
+        // Smooth scrolling for all links
+        $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(event) {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000, function() {
+                        var $target = $(target);
+                        $target.focus();
+                        if ($target.is(":focus")) {
+                            return false;
+                        } else {
+                            $target.attr('tabindex','-1');
+                            $target.focus();
+                        }
+                    });
+                }
+            }
+        });
+
+        // Navbar Scroll Behavior
+        document.addEventListener("DOMContentLoaded", function () {
+            const navbar = document.querySelector(".navbar");
+            const navLinks = document.querySelectorAll(".nav-link");
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+            let lastScrollTop = 0;
+
+            window.addEventListener("scroll", function () {
+                let scrollTop = window.scrollY;
+
+                if (scrollTop === 0) {
+                    navbar.classList.remove("hidden", "scrolled");
+                } else if (scrollTop > lastScrollTop) {
+                    navbar.classList.add("hidden");
+                    navbar.classList.add("scrolled");
+                } else {
+                    navbar.classList.remove("hidden");
+                    navbar.classList.add("scrolled");
+                }
+
+                if (scrollTop > 50) {
+                    navbar.classList.add("scrolled");
+                } else if (scrollTop > 0) {
+                    navbar.classList.remove("scrolled");
+                }
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    if (window.innerWidth <= 991) {
+                        navbarCollapse.classList.remove("show");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
