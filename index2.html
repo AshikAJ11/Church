@@ -449,6 +449,7 @@
             scrollbar-width: none;
             max-width: 100%;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
         .ministry-tabs-scroll::-webkit-scrollbar {
             display: none;
@@ -457,6 +458,7 @@
             display: inline-flex;
             flex-wrap: nowrap;
             border-bottom: none;
+            width: max-content;
         }
         .nav-tabs .nav-link {
             color: var(--dark);
@@ -479,14 +481,22 @@
         }
         @media (max-width: 768px) {
             .nav-tabs {
-                flex-wrap: wrap;
+                display: flex;
+                flex-wrap: nowrap;
+                width: max-content;
             }
             .nav-tabs .nav-link {
-                width: 100%;
-                text-align: center;
+                padding: 10px 15px;
+                font-size: 0.9rem;
             }
             .tab-scroll-arrow {
-                display: none;
+                display: flex;
+            }
+        }
+        @media (max-width: 576px) {
+            .nav-tabs .nav-link {
+                padding: 8px 12px;
+                font-size: 0.8rem;
             }
         }
         .ministry-content {
@@ -640,10 +650,6 @@
                 height: 40px;
                 bottom: 20px;
             }
-            .nav-tabs .nav-link {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
         }
         @media (max-width: 576px) {
             .hero {
@@ -654,10 +660,6 @@
             }
             .btn-custom {
                 padding: 10px 20px;
-                font-size: 0.8rem;
-            }
-            .nav-tabs .nav-link {
-                padding: 8px 12px;
                 font-size: 0.8rem;
             }
         }
@@ -878,7 +880,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ministry-tabs-container">
-                        <div class="tab-scroll-arrow left">
+                        <div class="tab-scroll-arrow left pb-3">
                             <i class="fas fa-chevron-left"></i>
                         </div>
                         <div class="ministry-tabs-scroll">
@@ -921,7 +923,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="tab-scroll-arrow right">
+                        <div class="tab-scroll-arrow right mb-2 pb-3">
                             <i class="fas fa-chevron-right"></i>
                         </div>
                     </div>
@@ -1195,14 +1197,14 @@
                 <h3>Follow Us</h3>
                 <p>Stay connected through our social media channels.</p>
                 <div class="social-icons">
-                    <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="images/twitter.jpeg" alt="Twitter"></a>
-                    <a href="#"><img src="images/instagram.jpg" alt="Instagram"></a>
+                    <a href="#"><img src="facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="instagram.png" alt="Instagram"></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 St. Antony's Church. Developed by <a href="https://ashikjportfolio.netlify.app/" class="text-danger text-decoration-none">A J</a></p>
+            <p>© 2025 St. Antony's Church, Bharathapally. All rights reserved.</p>
         </div>
     </footer>
     <!-- Back to Top Button -->
@@ -1299,6 +1301,31 @@
                     }
                 });
             });
+
+            // Ministry Tabs Scroll Arrows
+            const tabsScroll = document.querySelector('.ministry-tabs-scroll');
+            const leftArrow = document.querySelector('.tab-scroll-arrow.left');
+            const rightArrow = document.querySelector('.tab-scroll-arrow.right');
+
+            function updateArrows() {
+                const scrollLeft = tabsScroll.scrollLeft;
+                const maxScroll = tabsScroll.scrollWidth - tabsScroll.clientWidth;
+
+                leftArrow.style.opacity = scrollLeft > 0 ? '1' : '0';
+                rightArrow.style.opacity = scrollLeft < maxScroll - 1 ? '1' : '0';
+            }
+
+            leftArrow.addEventListener('click', () => {
+                tabsScroll.scrollBy({ left: -200, behavior: 'smooth' });
+            });
+
+            rightArrow.addEventListener('click', () => {
+                tabsScroll.scrollBy({ left: 200, behavior: 'smooth' });
+            });
+
+            tabsScroll.addEventListener('scroll', updateArrows);
+            window.addEventListener('resize', updateArrows);
+            updateArrows(); // Initial check
         });
     </script>
 </body>

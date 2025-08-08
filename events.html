@@ -115,7 +115,7 @@
 
         /* Hero Section */
         .hero {
-                      background: url('images/bible2.jpg') no-repeat center center/cover;
+            background: url('images/bible2.jpg') no-repeat center center/cover;
             background-size: cover;
             background-position: center;
             height: 50vh;
@@ -159,10 +159,35 @@
             margin: 15px auto;
         }
 
-        .nav-tabs {
-            border-bottom: 2px solid var(--primary);
+        .events-tabs-container {
+            position: relative;
             margin-bottom: 30px;
-            justify-content: center;
+            max-width: 100%;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        .events-tabs-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
+            padding-bottom: 15px;
+            scrollbar-width: none;
+            max-width: 100%;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        .events-tabs-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-tabs {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            border-bottom: none;
+            width: max-content;
+            justify-content: flex-start;
         }
 
         .nav-tabs .nav-link {
@@ -173,6 +198,7 @@
             border: none;
             border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .nav-tabs .nav-link:hover,
@@ -185,6 +211,35 @@
             color: var(--primary);
             border-bottom: 3px solid var(--primary);
             background-color: transparent;
+        }
+
+        .tab-scroll-arrow {
+            position: absolute;
+            top: 0;
+            width: 40px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255,255,255,0.8);
+            z-index: 1;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tab-scroll-arrow.left {
+            left: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .tab-scroll-arrow.right {
+            right: 0;
+            background: linear-gradient(270deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .events-tabs-container:hover .tab-scroll-arrow {
+            opacity: 1;
         }
 
         .tab-content {
@@ -353,9 +408,6 @@
             .hero p {
                 font-size: 1.2rem;
             }
-            .nav-tabs {
-                flex-wrap: wrap;
-            }
             .nav-tabs .nav-link {
                 padding: 8px 15px;
                 font-size: 0.9rem;
@@ -379,18 +431,25 @@
             .footer-section {
                 text-align: center;
             }
+            .nav-tabs .nav-link {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            .tab-scroll-arrow {
+                display: flex;
+            }
         }
 
         @media (max-width: 576px) {
             .hero h1 {
                 font-size: 2rem;
             }
-            .btn-custom {
-                padding: 10px 20px;
-                font-size: 0.8rem;
-            }
             .nav-tabs .nav-link {
                 padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+            .btn-custom {
+                padding: 10px 20px;
                 font-size: 0.8rem;
             }
         }
@@ -438,44 +497,54 @@
     <section class="events-section">
         <div class="container">
             <h2 class="section-title">Our Community Events</h2>
-            <ul class="nav nav-tabs" id="eventTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="children-tab" data-bs-toggle="tab" data-bs-target="#children" type="button" role="tab">Children</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="youth-tab" data-bs-toggle="tab" data-bs-target="#youth" type="button" role="tab">Youth</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="ycs-tab" data-bs-toggle="tab" data-bs-target="#ycs" type="button" role="tab">YCS</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="anbiyam1-tab" data-bs-toggle="tab" data-bs-target="#anbiyam1" type="button" role="tab">Anbiyam 1</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="anbiyam2-tab" data-bs-toggle="tab" data-bs-target="#anbiyam2" type="button" role="tab">Anbiyam 2</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="anbiyam3-tab" data-bs-toggle="tab" data-bs-target="#anbiyam3" type="button" role="tab">Anbiyam 3</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="anbiyam4-tab" data-bs-toggle="tab" data-bs-target="#anbiyam4" type="button" role="tab">Anbiyam 4</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="mariyan-ladies-tab" data-bs-toggle="tab" data-bs-target="#mariyan-ladies" type="button" role="tab">Mariyan Chenai (Ladies)</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="mariyan-gents-tab" data-bs-toggle="tab" data-bs-target="#mariyan-gents" type="button" role="tab">Mariyan Chenai (Gents)</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pangu-tab" data-bs-toggle="tab" data-bs-target="#pangu" type="button" role="tab">Pangu Peravai</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="aamosa-tab" data-bs-toggle="tab" data-bs-target="#aamosa" type="button" role="tab">Aamosa</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers" type="button" role="tab">Teachers Meeting</button>
-                </li>
-            </ul>
+            <div class="events-tabs-container">
+                <div class="tab-scroll-arrow left pb-3">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="events-tabs-scroll">
+                    <ul class="nav nav-tabs" id="eventTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="children-tab" data-bs-toggle="tab" data-bs-target="#children" type="button" role="tab">Children</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="youth-tab" data-bs-toggle="tab" data-bs-target="#youth" type="button" role="tab">Youth</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="ycs-tab" data-bs-toggle="tab" data-bs-target="#ycs" type="button" role="tab">YCS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="anbiyam1-tab" data-bs-toggle="tab" data-bs-target="#anbiyam1" type="button" role="tab">Anbiyam 1</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="anbiyam2-tab" data-bs-toggle="tab" data-bs-target="#anbiyam2" type="button" role="tab">Anbiyam 2</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="anbiyam3-tab" data-bs-toggle="tab" data-bs-target="#anbiyam3" type="button" role="tab">Anbiyam 3</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="anbiyam4-tab" data-bs-toggle="tab" data-bs-target="#anbiyam4" type="button" role="tab">Anbiyam 4</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="mariyan-ladies-tab" data-bs-toggle="tab" data-bs-target="#mariyan-ladies" type="button" role="tab">Mariyan Chenai (Ladies)</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="mariyan-gents-tab" data-bs-toggle="tab" data-bs-target="#mariyan-gents" type="button" role="tab">Mariyan Chenai (Gents)</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pangu-tab" data-bs-toggle="tab" data-bs-target="#pangu" type="button" role="tab">Pangu Peravai</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="aamosa-tab" data-bs-toggle="tab" data-bs-target="#aamosa" type="button" role="tab">Aamosa</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers" type="button" role="tab">Teachers Meeting</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-scroll-arrow right pb-3">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
 
             <div class="tab-content" id="eventTabsContent">
                 <!-- Children -->
@@ -907,6 +976,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="festivals.html">Festivals</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="events.html">Events</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -914,15 +984,15 @@
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <p>Stay connected through our social media channels.</p>
-                <div class="social-icons">
+              <div class="social-icons">
                     <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
-                    <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                    <a href="#"><img src="images/twitter.jpeg" alt="Twitter"></a>
+                    <a href="#"><img src="images/instagram.jpg" alt="Instagram"></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 St. Antony's Church, Bharathapally. All rights reserved.</p>
+           <p>© 2025 St. Antony's Church. Developed by <a href="https://ashikjportfolio.netlify.app/" class="text-danger text-decoration-none">A J</a></p>
         </div>
     </footer>
 
@@ -959,64 +1029,47 @@
         });
 
         // Navbar Scroll Behavior
-        document.addEventListener("DOMContentLoaded", function () {
-            const navbar = document.querySelector(".navbar");
-            const navLinks = document.querySelectorAll(".nav-link");
-            const navbarCollapse = document.querySelector(".navbar-collapse");
-            let lastScrollTop = 0;
+        let lastScroll = 0;
+        $(window).scroll(function() {
+            let currentScroll = $(this).scrollTop();
+            if (currentScroll > 50) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                $('.navbar').addClass('hidden');
+            } else {
+                $('.navbar').removeClass('hidden');
+            }
+            lastScroll = currentScroll;
+        });
 
-            window.addEventListener("scroll", function () {
-                let scrollTop = window.scrollY;
+        // Events Tabs Scroll Arrows
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabsScroll = document.querySelector('.events-tabs-scroll');
+            const leftArrow = document.querySelector('.tab-scroll-arrow.left');
+            const rightArrow = document.querySelector('.tab-scroll-arrow.right');
 
-                if (scrollTop === 0) {
-                    navbar.classList.remove("hidden", "scrolled");
-                } else if (scrollTop > lastScrollTop) {
-                    navbar.classList.add("hidden");
-                    navbar.classList.add("scrolled");
-                } else {
-                    navbar.classList.remove("hidden");
-                    navbar.classList.add("scrolled");
-                }
+            function updateArrows() {
+                const scrollLeft = tabsScroll.scrollLeft;
+                const maxScroll = tabsScroll.scrollWidth - tabsScroll.clientWidth;
 
-                if (scrollTop > 50) {
-                    navbar.classList.add("scrolled");
-                } else if (scrollTop > 0) {
-                    navbar.classList.remove("scrolled");
-                }
+                leftArrow.style.opacity = scrollLeft > 0 ? '1' : '0';
+                rightArrow.style.opacity = scrollLeft < maxScroll - 1 ? '1' : '0';
+            }
 
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            leftArrow.addEventListener('click', () => {
+                tabsScroll.scrollBy({ left: -200, behavior: 'smooth' });
             });
 
-            navLinks.forEach(link => {
-                link.addEventListener("click", () => {
-                    if (window.innerWidth <= 991) {
-                        navbarCollapse.classList.remove("show");
-                    }
-                });
+            rightArrow.addEventListener('click', () => {
+                tabsScroll.scrollBy({ left: 200, behavior: 'smooth' });
             });
 
-            // Smooth scrolling for nav links
-            $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(event) {
-                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-                    var target = $(this.hash);
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    if (target.length) {
-                        event.preventDefault();
-                        $('html, body').animate({
-                            scrollTop: target.offset().top - 70 // Adjust for fixed navbar height
-                        }, 1000, function() {
-                            var $target = $(target);
-                            $target.focus();
-                            if ($target.is(":focus")) {
-                                return false;
-                            } else {
-                                $target.attr('tabindex','-1');
-                                $target.focus();
-                            }
-                        });
-                    }
-                }
-            });
+            tabsScroll.addEventListener('scroll', updateArrows);
+            window.addEventListener('resize', updateArrows);
+            updateArrows(); // Initial check
         });
     </script>
 </body>
